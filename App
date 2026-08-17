@@ -1,0 +1,20 @@
+FocusNudge/
+├── .github/
+│   └── workflows/
+│       └── build.yml
+└── app/
+    ├── src/
+    │   └── main/
+    │       ├── java/
+    │       │   └── com/
+    │       │       └── example/
+    │       │           └── focusnudge/
+    │       │               └── MainActivity.kt
+    │       ├── res/
+    │       │   └── xml/
+    │       │       └── accessibility_service_config.xml
+    │       └── AndroidManifest.xml
+    └── build.gradle.kts
+├── build.gradle.kts
+├── settings.gradle.kts
+└── gradle.properties
