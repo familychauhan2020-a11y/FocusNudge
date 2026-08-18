@@ -16,7 +16,7 @@ class NudgeDetectorService : AccessibilityService() {
 
         val rootNode = rootInActiveWindow ?: return
 
-        // 1. Full-screen educational video active hone par swipe reset karein
+        // 1. Full-screen video active hone par skip karein
         if (isFullScreenPlayer(rootNode)) {
             swipeCount = 0
             return
@@ -26,7 +26,6 @@ class NudgeDetectorService : AccessibilityService() {
         if (event.eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
             val currentTime = System.currentTimeMillis()
 
-            // Agar 3 seconds ke andar doosra swipe hua hai
             if (currentTime - lastSwipeTime < 3000) {
                 swipeCount++
             } else {
@@ -34,7 +33,7 @@ class NudgeDetectorService : AccessibilityService() {
             }
             lastSwipeTime = currentTime
 
-            // 3. Continuous 5 swipes ke baad FocusNudge overlay trigger karein
+            // 3. Continuous 5 swipes ke baad Overlay Trigger karein
             if (swipeCount >= 5) {
                 triggerNudgeOverlay()
                 swipeCount = 0
@@ -48,7 +47,6 @@ class NudgeDetectorService : AccessibilityService() {
 
         val displayMetrics = resources.displayMetrics
         
-        // Full screen bounds check (Educational lecture detection)
         return bounds.width() == displayMetrics.widthPixels && 
                bounds.height() == displayMetrics.heightPixels
     }
