@@ -45,10 +45,10 @@ class NudgeDetectorService : AccessibilityService() {
         val bounds = Rect()
         node.getBoundsInScreen(bounds)
 
-        val displayMetrics = resources.displayMetrics
+        val metrics = applicationContext.resources.displayMetrics
         
-        return bounds.width() == displayMetrics.widthPixels && 
-               bounds.height() == displayMetrics.heightPixels
+        return bounds.width() >= metrics.widthPixels && 
+               bounds.height() >= metrics.heightPixels
     }
 
     private fun triggerNudgeOverlay() {
