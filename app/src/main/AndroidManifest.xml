@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- System Overlay & App Usage Permissions -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
@@ -9,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
+        <!-- Main Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -18,8 +21,9 @@
             </intent-filter>
         </activity>
 
+        <!-- Smart Doom-Scrolling & Full-Screen Detection Service -->
         <service
-            android:name=".AppDetectorService"
+            android:name=".NudgeDetectorService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:exported="true">
             <intent-filter>
@@ -31,4 +35,5 @@
         </service>
 
     </application>
+
 </manifest>
