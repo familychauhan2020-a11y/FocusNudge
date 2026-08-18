@@ -1,7 +1,6 @@
 package com.example.focusnudge
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -17,7 +16,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -26,7 +24,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
-// Data Models
 data class BlockedApp(val appName: String, val packageName: String, val isBlocked: Boolean)
 data class FocusHabit(val title: String, val currentMinutes: Int, val targetMinutes: Int)
 
@@ -140,7 +137,6 @@ fun DashboardScreen() {
 
 @Composable
 fun AppBlocklistScreen() {
-    val context = LocalContext.current
     val apps = remember {
         mutableStateListOf(
             BlockedApp("Instagram", "com.instagram.android", true),
@@ -197,8 +193,9 @@ fun HabitsScreen() {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(habit.title)
                     Spacer(modifier = Modifier.height(8.dp))
+                    val currentProgress = habit.currentMinutes.toFloat() / habit.targetMinutes.toFloat()
                     LinearProgressIndicator(
-                        progress = { habit.currentMinutes.toFloat() / habit.targetMinutes.toFloat() },
+                        progress = currentProgress,
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
@@ -217,6 +214,7 @@ fun SettingsScreen() {
             .padding(16.dp)
     ) {
         Text("⚙️ App Settings", style = MaterialTheme.typography.titleLarge)
+        Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
