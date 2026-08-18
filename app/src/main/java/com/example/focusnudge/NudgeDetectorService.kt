@@ -16,13 +16,11 @@ class NudgeDetectorService : AccessibilityService() {
 
         val rootNode = rootInActiveWindow ?: return
 
-        // 1. Full-screen video active hone par skip karein
         if (isFullScreenPlayer(rootNode)) {
             swipeCount = 0
             return
         }
 
-        // 2. Continuous Reels/Shorts vertical swipes detect karein
         if (event.eventType == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
             val currentTime = System.currentTimeMillis()
 
@@ -33,7 +31,6 @@ class NudgeDetectorService : AccessibilityService() {
             }
             lastSwipeTime = currentTime
 
-            // 3. Continuous 5 swipes ke baad Overlay Trigger karein
             if (swipeCount >= 5) {
                 triggerNudgeOverlay()
                 swipeCount = 0
