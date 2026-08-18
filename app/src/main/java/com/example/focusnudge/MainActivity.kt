@@ -154,7 +154,7 @@ fun FocusNudgeDashboard() {
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         LinearProgressIndicator(
-                            progress = { (habit.completedMinutes.toFloat() / habit.targetMinutes).coerceIn(0f, 1f) },
+                            progress = (habit.completedMinutes.toFloat() / habit.targetMinutes).coerceIn(0f, 1f),
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
